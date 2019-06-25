@@ -1,16 +1,16 @@
 '''
-用递归和非递归前中后序遍历二叉树
+二叉树的先序遍历
+
+先序遍历 同LeetCode144
+https://leetcode-cn.com/problems/binary-tree-preorder-traversal/submissions/
 '''
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
-
-#先序遍历 同LeetCode144
-#递归
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+'''------------------递归---------------------'''
 class Solution(object):
     def preorderTraversal(self, root):
         """
@@ -30,3 +30,4 @@ class Solution(object):
         self.preorderTraversal_(node.left, result)
         self.preorderTraversal_(node.right, result)
 
+'''-----------------非递归--------------------'''
