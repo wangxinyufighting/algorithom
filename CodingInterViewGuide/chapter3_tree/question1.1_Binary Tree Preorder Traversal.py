@@ -10,8 +10,9 @@ class TreeNode(object):
         self.val = x
         self.left = None
         self.right = None
-'''------------------递归---------------------'''
+
 class Solution(object):
+    '''------------------递归---------------------'''
     def preorderTraversal(self, root):
         """
         :type root: TreeNode
@@ -30,4 +31,49 @@ class Solution(object):
         self.preorderTraversal_(node.left, result)
         self.preorderTraversal_(node.right, result)
 
-'''-----------------非递归--------------------'''
+    '''-----------------非递归--------------------'''
+    def preorderTraversal(self, root):
+        if not root:
+            return None
+        stack = []
+        result = []
+        stack.append(root)
+        while stack:
+            root = stack.pop()
+            result.append(root.val)
+            if root.right:
+                stack.append(root.right)
+            if root.left:
+                stack.append(root.left)
+
+        return result
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

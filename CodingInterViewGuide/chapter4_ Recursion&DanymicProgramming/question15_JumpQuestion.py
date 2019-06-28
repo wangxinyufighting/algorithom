@@ -36,3 +36,17 @@ class Solution(object):
 
         return jump
 
+def canJump(nums):
+    """
+    :type nums: List[int]
+    :rtype: bool
+    """
+    if not nums:
+        return None
+
+
+
+
+# print(canJump([2,3,1,1,4]))
+print(canJump([3,2,1,0,4]))
+

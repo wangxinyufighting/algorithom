@@ -10,8 +10,9 @@ class TreeNode(object):
         self.val = x
         self.left = None
         self.right = None
-'''------------------递归---------------------'''
+
 class Solution(object):
+    '''------------------递归---------------------'''
     def inorderTraversal(self, root):
         """
         :type root: TreeNode
@@ -29,5 +30,44 @@ class Solution(object):
         self.inorderTraversal_(node.left, result)
         result.append(node.val)
         self.inorderTraversal_(node.right, result)
+    '''-----------------非递归--------------------'''
+    def inorderTraversal(self, root):
+        if not root:
+            return None
+        stack = []
+        result = []
+        while stack or root:
+            if root:
+                stack.append(root)
+                root = root.left
+            else:
+                root = stack.pop()
+                result.append(root.val)
+                root = root.right
 
-'''-----------------非递归--------------------'''
+        return result
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

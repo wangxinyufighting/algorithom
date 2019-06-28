@@ -10,8 +10,9 @@ class TreeNode(object):
         self.val = x
         self.left = None
         self.right = None
-'''------------------递归---------------------'''
+
 class Solution(object):
+    '''------------------递归---------------------'''
     def postorderTraversal(self, root):
         """
         :type root: TreeNode
@@ -30,4 +31,51 @@ class Solution(object):
         self.postorderTraversal_(node.right, result)
         result.append(node.val)
 
-'''-----------------非递归--------------------'''
+    '''-----------------非递归--------------------'''
+    def postorderTraversal(self, root):
+        if not root:
+            return None
+        s1 = []
+        s2 = []
+        s1.append(root)
+        result = []
+        while s1:
+            root = s1.pop()
+            s2.append(root)
+            if root.left:
+                s1.append(root.left)
+            if root.right:
+                s1.append(root.right)
+
+        while s2:
+            result.append(s2.pop().val)
+
+        return result
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

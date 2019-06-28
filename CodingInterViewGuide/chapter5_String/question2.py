@@ -7,7 +7,6 @@ def numSum(str):
     res = 0
     num = 0
     pos = True
-    cur = 0
     for i in range(len(str)):
         if not str[i].isdigit():
             res += num
