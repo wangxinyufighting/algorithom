@@ -27,6 +27,9 @@
 链接：https://leetcode-cn.com/problems/friend-circles
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 '''
+
+
+#标准的并查集问题，找到形成环的个数
 class Solution:
     def findCircleNum(self, M):
         num = len(M)
