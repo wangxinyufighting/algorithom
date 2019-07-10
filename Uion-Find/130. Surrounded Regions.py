@@ -35,28 +35,22 @@ class Solution:
         for i in range(len(board)):
             for j in range(len(board[i])):
                 if board[i][j] == 'O':
-                    Os.append((i,j))
+                    Os.append((i, j))
 
         parent = [-1] * len(Os)
         rank = [0] * len(Os)
         result = []
         for i in Os:
             for j in Os:
-                if i != j:
-                    # if i[0] == 0 or i[1] == 0 or j[0] == 0 or j[1] == 0 \
-                    #     or i[0] == m-1 or i[1] == n-1 or j[0] == m-1 or j[1] == n-1:
-                    #     print(i, j)
-                    if self.union(Os.index(i), Os.index(j), parent, rank, Os, m, n):
-                        if i not in result:
-                            result.append(i)
-                        if j not in result:
-                            result.append(j)
+                if i != j and (i[0] == 0 or i[1] == 0 or i[0] == m-1 or i[1] ==n-1):
+                    if (((i[0] == j[0] + 1 or i[0] == j[0] - 1) and i[1] == j[1]) or ((i[1] == j[1] + 1 or i[1] == j[1] - 1) and i[0] == j[0])):
+                        print(j)
 
         print(result)
         flag = True
         if result:
             for i in result:
-                if i[0] == 0 or i[1] == 0 or i[0] == len(board)-1 or i[1] == len(board[0])-1:
+                if i[0] == 0 or i[1] == 0 or i[0] == len(board) - 1 or i[1] == len(board[0]) - 1:
                     flag = False
 
             if flag:
@@ -66,7 +60,7 @@ class Solution:
             for i in range(len(board)):
                 for j in range(len(board[i])):
                     if board[i][j] == 'O':
-                        if i != 0 and j != 0 and i != len(board)-1 and j != len(board[0])-1:
+                        if i != 0 and j != 0 and i != len(board) - 1 and j != len(board[0]) - 1:
                             board[i][j] = 'X'
 
     def find(self, x, parent):
@@ -76,19 +70,11 @@ class Solution:
 
         return x_root
 
-    def union(self, x, y, parent, rank, Os, m, n):
+    def union(self, x, y, parent, rank):
         x_root = self.find(x, parent)
         y_root = self.find(y, parent)
 
         if x_root != y_root:
-            # if Os[x_root][0] == 0 or Os[x_root][1] == 0 or Os[x_root][0] == m-1 or Os[x_root][1] == n-1:
-            #     parent[y_root] = x_root
-            #     return True
-            # elif Os[y_root][0] == 0 or Os[y_root][1] == 0 or Os[y_root][0] == m-1 or Os[y_root][1] == n-1:
-            #     parent[x_root] = y_root
-            #     return True
-            # else:
-            #     return False
             if rank[x_root] > rank[y_root]:
                 parent[y_root] = x_root
             elif rank[x_root] < rank[y_root]:
@@ -100,8 +86,12 @@ class Solution:
         else:
             return False
 
+
 s = Solution()
-test = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]
+test = [["X","X","X","X"],
+        ["X","O","O","X"],
+        ["X","X","O","X"],
+        ["O","O","O","X"]]
 # test = [["X","X","X"],["X","O","X"],["X","X","X"]]
 # test = [["O","X","O"],["X","O","X"],["O","X","O"]]
 # test = [["X","O","X","O","X","O"],["O","X","O","X","O","X"],["X","O","X","O","X","O"],["O","X","O","X","O","X"]]
