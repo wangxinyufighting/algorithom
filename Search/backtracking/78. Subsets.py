@@ -30,7 +30,7 @@ class Solution:
             for j in range(i, n):
                 helper(j+1, temp+[nums[j]])
 
-        helper(0,[])
+        helper(0, [])
         return res
 
     def subsets(self, nums):
@@ -43,7 +43,47 @@ class Solution:
 
         return res
 
+class Solution:
+    def subsets(self, nums):
+        if not nums:
+            return []
+        result = []
+        self.backtrack(0, nums, [], result)
+        return result
+
+    def backtrack(self,start, nums, temp, result):
+        result.append(temp.copy())
+        for i in range(start, len(nums)):
+            temp.append(nums[i])
+            self.backtrack(i+1, nums, temp, result)
+            temp.pop()
+
 s = Solution()
 print(s.subsets([1,2,3]))
 # for i in range(3,3):
 #     print(i)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
