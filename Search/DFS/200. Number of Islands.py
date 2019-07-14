@@ -31,10 +31,12 @@ class Solution:
             return None
         m = len(grid)
         n = len(grid[0])
-
-        def dfs(x, y):
-            if x < 0 or y < 0 or x >= m or y >= n or grid[x][y] != '1':
+        num = 0
+        def dfs(x,y):
+            if x < 0 or y < 0 or x >= m or y >= n or grid[x][y] == '0':
                 return
+
+            grid[x][y] = '0'
 
             dfs(x-1, y)
             dfs(x+1, y)
@@ -44,31 +46,35 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == '1':
+                    num += 1
                     dfs(i, j)
 
-'''
+        return num
+
     def numIslands(self, grid):
         if not grid:
             return None
         m = len(grid)
         n = len(grid[0])
-        islands = []
-        island = 0
         numIsland = 0
         parent = [-1] * 7
         rank = [0] * 7
 
         for i in range(m):
             for j in range(n):
-                if i != j and grid[i][j] == '1':
-                    if self.union(i, j, parent, rank):
+                if grid[i][j] == '1':
                         numIsland += 1
-        #
-        # for i in islands:
-        #     for j in islands:
-        #         if i != j:
-        #
-        #                 numIsland -= 1
+
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == '1':
+                    grid[i][j] == '0'
+                    if i - 1 >= 0 and grid[i-1][j] == '1':
+                        if self.union(i-1, j):
+                            numIsland -= 1
+                    if i + 1 < m and grid[i+1][j] == '1':
+                        if self.union(i+1, j):
+                            numIsland -= 1
 
         return numIsland
 
@@ -97,15 +103,22 @@ class Solution:
             return True
         else:
             return False
-'''
+
+
 s = Solution()
-print(s.numIslands([["1","1","0","0","0"],
-                    ["1","1","0","0","0"],
-                    ["0","0","1","0","0"],
-                    ["0","0","0","1","1"]]
-                   ))
+# print(s.numIslands([["1","1","0","0","0"],
+#                     ["1","1","0","0","0"],
+#                     ["0","0","1","0","0"],
+#                     ["0","0","0","1","1"]]
+#                    ))
 
+# print(s.numIslands([["1","1","1","1","0"],
+#                     ["1","1","0","1","0"],
+#                     ["1","1","0","0","0"],
+#                     ["0","0","0","0","0"]]
+#                    ))
 
+print(s.numIslands([["1","0","1","1","0","1","1"]]))
 
 
 
