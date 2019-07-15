@@ -51,6 +51,7 @@ class Solution:
 
         return num
 
+class Solution:
     def numIslands(self, grid):
         if not grid:
             return None
