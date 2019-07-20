@@ -5,10 +5,34 @@
 
 返回滑动窗口最大值。
 
+示例:
+输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3
+输出: [3,3,5,5,6,7]
+
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/sliding-window-maximum
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 '''
 class Solution:
     def maxSlidingWindow(self, nums, k):
-        pass
+        if not nums or k < 1:
+            return []
+        result = []
+        qmax = []
+        index = 0
+        for i in range(len(nums)):
+            while qmax and nums[qmax[-1]] <= nums[i]:
+                qmax.pop()
+            qmax.append(i)
+            if qmax[0] == i - k:
+                qmax.pop(0)
+
+            if i >= k-1:
+                result.append(nums[qmax[0]])
+
+        return result
+
+s = Solution()
+print(s.maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3))
+
+
